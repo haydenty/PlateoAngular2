@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group my-group">
+                <input type="text" class="form-control" placeholder="Filter By..." [(ngModel)]="filterText">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Filter</button><!--TODO: add pipe for filter-->
+                </span>
+            </div>
+        </div>
+    </div>
+  <br/>
+    <div class="row">
+      <div clas="col-sm-12">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let item of items">
+                <td (click)="itemClicked(item);">
+                  {{item.propA}} - {{item.propB}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
