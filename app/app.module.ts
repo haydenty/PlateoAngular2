@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'plates', component: PlatesComponent },
   { path: 'plates/me', component: MyPlatesComponent },
-  { path: 'plate/:id', component: PlateComponent },
+  { path: 'plates/:id', component: PlateComponent },
   { path: '**', component: HomeComponent }
 ];
 
