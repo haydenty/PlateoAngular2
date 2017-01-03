@@ -1,0 +1,65 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <legend>Create Account</legend>
+
+    <form class="form-horizontal col-sm-8" (ngSubmit)="register()" #registerForm="ngForm">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control" [(ngModel)]="user.firstName" name="firstName" #fname="ngModel" required>
+        <div [hidden]="fname.valid || fname.pristine" class="alert alert-danger">First Name is required</div>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" [(ngModel)]="user.lastName" name="lastName" #lname="ngModel" required>
+        <div [hidden]="lname.valid || lname.pristine" class="alert alert-danger">Last Name is required</div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" [(ngModel)]="user.pword" name="pword" #pword="ngModel" required>
+        <div [hidden]="pword.valid || pword.pristine" class="alert alert-danger">Password is required</div>
+      </div>
+      <div class="form-group">
+        <label>Verify Password</label>
+        <input type="password" class="form-control" [(ngModel)]="user.vpword" name="vpword" #vpword="ngModel" required>
+        <div [hidden]="vpword.valid || vpword.pristine" class="alert alert-danger">You must verify your password</div>
+        <div [hidden]="vpword.value == pword.value" class="alert alert-danger">Passwords must match</div><!-- TODO: must disable register btn-->
+      </div>
+      <div class="form-group">
+        <label>E-Mail</label>
+        <input type="text" class="form-control" [(ngModel)]="user.email" name="email" #email="ngModel" required>
+        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Email is required</div><!-- TODO: custom pipe-->
+      </div>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" [(ngModel)]="user.username" name="username" #username="ngModel" required>
+        <div [hidden]="username.valid || username.pristine" class="alert alert-danger">Username is required</div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary pull-left" [disabled]="!registerForm.form.valid">Register</button>
+        <button type="submit" class="btn btn-default" (click)="reset()">Reset</button>
+        <p>{{errorMessage}}</p>
+      </div>
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    <legend>You submitted the following:</legend>
+    <div class="row">
+      <div class="col-xs-3">First Name</div>
+      <div class="col-xs-9  pull-left">{{ user.firstName }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Last Name</div>
+      <div class="col-xs-9  pull-left">{{ user.lastName }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Email</div>
+      <div class="col-xs-9  pull-left">{{ user.email }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Username</div>
+      <div class="col-xs-9  pull-left">{{ user.username }}</div>
+    </div>
+    <br>
+    <button class="btn btn-default" (click)="submitted=false">Edit</button><!-- TODO: should this be login or edit profile or email verification code place-->
+  </div>
+</div>
