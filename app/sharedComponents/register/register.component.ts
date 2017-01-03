@@ -7,8 +7,7 @@ import { User } from './user';
   templateUrl: 'register.template.html'
 })
 export class RegisterComponent  {
-  user = new User(-1);
-  //user = new User(-1,'F','L','P','VP','E','U');
+  user = new User(-1,'','','','','','');
   submitted = false;
   errorMessage:string = '';
 
