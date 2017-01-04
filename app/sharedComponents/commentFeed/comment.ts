@@ -1,9 +1,8 @@
-import { User } from '../register/user';
+import { IUser } from '../register/user';
 
-export class Comment {
-constructor(
-  public id: number,
-  public user: User,
-  public comment: string,
-  public createdDateTime: string ) {}
+export class IComment {
+  id: number;
+  user: IUser;
+  comment: string;
+  createdDateTime: string; 
 }

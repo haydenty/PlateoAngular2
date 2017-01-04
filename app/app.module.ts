@@ -8,13 +8,13 @@ import { AppComponent }  from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { MyPlatesComponent } from './components/plates/myPlates.component';
 import { PlatesComponent } from './components/plates/plates.component';
+import { PlateFilterPipe } from './components/plates/plateFilter.pipe';
 import { PlateComponent } from './components/plate/plate.component';
+
 
 import { LoginComponent } from './sharedComponents/login/login.component';
 import { RegisterComponent } from './sharedComponents/register/register.component';
 import { CommentFeedComponent } from './sharedComponents/commentFeed/commentFeed.component';
-import { FilterListComponent } from './sharedComponents/filterList/filterList.component';
-import { FilterListPipe } from './sharedComponents/filterList/filterList.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,12 +36,11 @@ const appRoutes: Routes = [
     HomeComponent,
     MyPlatesComponent,
     PlatesComponent,
+    PlateFilterPipe,
     PlateComponent,
     LoginComponent,
     RegisterComponent,
-    CommentFeedComponent,
-    FilterListComponent,
-    FilterListPipe
+    CommentFeedComponent
     ],
   bootstrap:    [ AppComponent ]
 })

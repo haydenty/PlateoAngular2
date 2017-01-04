@@ -1,4 +1,29 @@
 <div class="container">
-  <h1>Plates</h1>
-  <filterList-shared [items]='plates'></filterList-shared>
+  <h1>{{title}}</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group my-group">
+                <input type="text" class="form-control" placeholder="Filter By..." [(ngModel)]="filterText">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Filter</button>
+                </span>
+            </div>
+        </div>
+    </div>
+  <br/>
+    <div class="row">
+      <div clas="col-sm-12">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let plate of plates | plateFilter:filterText">
+                <td (click)="plateClicked(item);">
+                  {{plate.plateNumber}} - {{plate.state.name}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 </div>

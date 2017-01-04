@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PlateService } from '../../services/plates/plate.service';
+import { IPlate } from '../plate/plate';
 
 @Component({
   moduleId: module.id,
@@ -6,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'plates.template.html',
 })
 export class PlatesComponent implements OnInit {
-    plates:any[] = [{propA:1, propB:"Test"}, {propA:4, propB:"Winner"}];
+    title:string = 'Plates';
+    filterText:string = '';
+    plates:IPlate[];
+    
+    constructor(private _plateService: PlateService){
+    }
+
     ngOnInit():void{
-    //TODO: service call
+    this.plates = this._plateService.searchPlates();
   }
 }

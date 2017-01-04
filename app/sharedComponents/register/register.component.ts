@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from './user';
+import { IUser } from './user';
 
 @Component({
   moduleId: module.id,
@@ -7,7 +7,7 @@ import { User } from './user';
   templateUrl: 'register.template.html'
 })
 export class RegisterComponent  {
-  user = new User(-1,'','','','','','');
+  user:IUser = {id:-1,firstName:"",lastName:"",email:"",pword:"",vpword:"",username:""};
   submitted:boolean = false;
   errorMessage:string = '';
 
@@ -19,6 +19,6 @@ export class RegisterComponent  {
     //this.errorMessage = 'error';
   }
   reset():void{
-    this.user = new User(-1,'','','','','','');
+    this.user = {id:-1,firstName:"",lastName:"",email:"",pword:"",vpword:"",username:""};
   }
 }
