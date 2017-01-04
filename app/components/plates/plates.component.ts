@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   moduleId: module.id,
   selector: 'plates-app',
   templateUrl: 'plates.template.html',
 })
-export class PlatesComponent  {
-  //TODO: create one plate list component and pass in a list of plates, not sure how to orchistrate service calls
+export class PlatesComponent implements OnInit {
+    plates:any[] = [{propA:1, propB:"Test"}, {propA:4, propB:"Winner"}];
+    ngOnInit():void{
+    //TODO: service call
+  }
 }

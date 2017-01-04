@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from './comment';
 
 @Component({
@@ -6,6 +6,13 @@ import { Comment } from './comment';
   selector: 'commentFeed-shared',
   templateUrl: 'commentFeed.template.html',
 })
-export class CommentFeedComponent  {
-  //TODO: takes input of list of comments
+export class CommentFeedComponent {
+  @Input() comments: number;
+  newComment:string;
+  @Output() addCommentNotify: EventEmitter<string> = new EventEmitter<string>();
+  
+  addComment():void{
+    this.addCommentNotify.emit(this.newComment);
+    this.newComment = '';
+  }
 }

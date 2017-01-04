@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class LoginComponent  {
   errorMessage:string = '';
 
-  login(username:string, pword:string){
+  login(username:string, pword:string):void{
     this.errorMessage = username + ' ' + pword;
     //TODO: do service call
   }

@@ -13,7 +13,8 @@ import { PlateComponent } from './components/plate/plate.component';
 import { LoginComponent } from './sharedComponents/login/login.component';
 import { RegisterComponent } from './sharedComponents/register/register.component';
 import { CommentFeedComponent } from './sharedComponents/commentFeed/commentFeed.component';
-import { SearchListComponent } from './sharedComponents/searchList/searchList.component';
+import { FilterListComponent } from './sharedComponents/filterList/filterList.component';
+import { FilterListPipe } from './sharedComponents/filterList/filterList.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     CommentFeedComponent,
-    SearchListComponent
+    FilterListComponent,
+    FilterListPipe
     ],
   bootstrap:    [ AppComponent ]
 })

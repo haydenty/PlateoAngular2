@@ -1,4 +1,4 @@
-export class User {
+export class User { //FIXME: should this be a class or interface?
 constructor(
   public id: number,
   public firstName: string,

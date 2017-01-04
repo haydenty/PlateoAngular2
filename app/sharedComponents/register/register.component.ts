@@ -8,17 +8,17 @@ import { User } from './user';
 })
 export class RegisterComponent  {
   user = new User(-1,'','','','','','');
-  submitted = false;
+  submitted:boolean = false;
   errorMessage:string = '';
 
-  register(){
+  register():void{
     //TODO: do service call
     //if response was good
     this.submitted = true;
     //else
     //this.errorMessage = 'error';
   }
-  reset(){
+  reset():void{
     this.user = new User(-1,'','','','','','');
   }
 }
