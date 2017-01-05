@@ -1,5 +1,5 @@
 export interface IUser { //FIXME: should this be a class or interface?
-  id: number;
+  _id: number;
   firstName: string;
   lastName: string;
   pword: string;

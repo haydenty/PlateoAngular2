@@ -1,0 +1,42 @@
+[
+    {
+        "_id": 1,
+        "plateNumber": "ABC",
+        "state": {
+            "name": "AMERICAN SAMOA",
+            "abbreviation": "AS"
+        },
+        "createdBy": 1,
+        "createdDateTime": "2016-10-12T20:08:19.749Z"
+    },
+    {
+        "_id": 2,
+        "plateNumber": "EYEMAC",
+        "state": {
+            "name": "WISCONSIN",
+            "abbreviation": "WI"
+        },
+        "createdBy": 1,
+        "createdDateTime": "2017-01-12T20:08:19.749Z"
+    },
+    {
+        "_id": 3,
+        "plateNumber": "Test",
+        "state": {
+            "name": "ALASKA",
+            "abbreviation": "AK"
+        },
+        "createdBy": 1,
+        "createdDateTime": "2016-10-12T20:08:19.749Z"
+    },
+    {
+        "_id": 4,
+        "plateNumber": "R8T3DR",
+        "state": {
+            "name": "MINNESOTA",
+            "abbreviation": "MN"
+        },
+        "createdBy": 2,
+        "createdDateTime": "2017-01-12T20:08:19.749Z"
+    }
+]

@@ -7,7 +7,7 @@ import { IUser } from './user';
   templateUrl: 'register.template.html'
 })
 export class RegisterComponent  {
-  user:IUser = {id:-1,firstName:"",lastName:"",email:"",pword:"",vpword:"",username:""};
+  user:IUser = {_id:-1,firstName:"",lastName:"",email:"",pword:"",vpword:"",username:""};
   submitted:boolean = false;
   errorMessage:string = '';
 
@@ -19,6 +19,6 @@ export class RegisterComponent  {
     //this.errorMessage = 'error';
   }
   reset():void{
-    this.user = {id:-1,firstName:"",lastName:"",email:"",pword:"",vpword:"",username:""};
+    this.user = {_id:-1,firstName:"",lastName:"",email:"",pword:"",vpword:"",username:""};
   }
 }

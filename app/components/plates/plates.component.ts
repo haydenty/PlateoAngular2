@@ -11,11 +11,16 @@ export class PlatesComponent implements OnInit {
     title:string = 'Plates';
     filterText:string = '';
     plates:IPlate[];
-    
+    errorMessage:string;
+
     constructor(private _plateService: PlateService){
     }
 
+    plateClicked():void{
+        //TODO: route
+    }
+
     ngOnInit():void{
-    this.plates = this._plateService.searchPlates();
+      this._plateService.getAllPlates().subscribe(plates => this.plates = plates, error => this.errorMessage = <any>error);
   }
 }

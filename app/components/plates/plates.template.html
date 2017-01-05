@@ -16,8 +16,9 @@
         <div class="table-responsive">
           <table class="table">
             <tbody>
-              <tr *ngFor="let plate of plates | plateFilter:filterText">
-                <td (click)="plateClicked(item);">
+              <tr>
+              <tr *ngFor="let plate of plates | plateFilter:filterText"> 
+                <td (click)="plateClicked(plate);">
                   {{plate.plateNumber}} - {{plate.state.name}}
                 </td>
               </tr>

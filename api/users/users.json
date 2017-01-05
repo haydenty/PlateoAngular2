@@ -1,0 +1,27 @@
+[
+    {
+        "_id":1,
+        "firstName":"Bob",
+        "lastName":"Smith",
+        "pword":"Test123",
+        "vpword":"Test123",
+        "email":"bob@test.com",
+        "username":"bsmith"
+    },
+    {
+        "_id":2,
+        "firstName":"Jane",
+        "lastName":"Watson",
+        "pword":"",
+        "vpword":"",
+        "email":"bob@test.com",
+        "username":"jwatson"
+    },
+    {
+        "_id":3,
+        "firstName":"Tony",
+        "lastName":"McDonald", //user without pword info
+        "email":"bob@test.com",
+        "username":"TMcGoody"
+    }
+]
