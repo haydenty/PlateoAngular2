@@ -11,16 +11,7 @@ import 'rxjs/add/operator/switchMap';
   templateUrl: 'plate.template.html'
 })
 export class PlateComponent implements OnInit {
-   plate:IPlate;// = {
-    //     "_id": 2,
-    //     "plateNumber": "EYEMAC",
-    //     "state": {
-    //         "name": "WISCONSIN",
-    //         "abbreviation": "WI"
-    //     },
-    //     "createdBy": 3,
-    //     "createdDateTime": "2017-01-12T20:08:19.749Z"
-    // };
+   plate:IPlate;
   isFollowing:boolean = false;
   comments:IComment[] = [];
   errorMessage:string;
