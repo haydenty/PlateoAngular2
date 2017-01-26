@@ -9,32 +9,32 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class PlateService {
-    private _baseUrl:string = 'http://localhost:3000/';//'http://104.131.125.3:3000/';
+    private _baseUrl:string = 'http://localhost:3010/';//'http://104.131.125.3:3000/';
     constructor(private _http: Http){}
 
     getPlate(plateId:number):Observable<IPlate>{
-        return this._http.get(this._baseUrl + 'plates/' + plateId).map((response: Response) => <IPlate> response.json())
-                                                        .do(data => console.log('All: ' + JSON.stringify(data)))
+        return this._http.get(this._baseUrl + 'plates/' + plateId).map((response: Response) => <IPlate> response.json()[0])
+                                                        .do(data => console.log('Plate: ' + JSON.stringify(data)))
                                                         .catch(this.handleError);
     };   
     getAllPlates(): Observable<IPlate[]>{   
         return this._http.get(this._baseUrl+ 'plates' ).map((response: Response) => <IPlate[]> response.json())
-                                                        .do(data => console.log('All: ' + JSON.stringify(data)))
+                                                        .do(data => console.log('Plates: ' + JSON.stringify(data)))
                                                         .catch(this.handleError);
     };
     searchPlates(state:string,plateNumber:string):Observable<IPlate[]>{
         return this._http.get(this._baseUrl + 'plates/' + state + '/' + plateNumber).map((response: Response) => <IPlate[]> response.json())
-                                                        .do(data => console.log('All: ' + JSON.stringify(data)))
+                                                        .do(data => console.log('Searched Plates: ' + JSON.stringify(data)))
                                                         .catch(this.handleError);
     };
    getPlateComments(plateId:number):Observable<Response>{
-        return this._http.get(this._baseUrl + 'comments/' + plateId).do(data => console.log('All: ' + JSON.stringify(data))).catch(this.handleError);
+        return this._http.get(this._baseUrl + 'comments/' + plateId).do(data => console.log('Comments: ' + JSON.stringify(data))).catch(this.handleError);
     };
     
     //These requests need tokens
     getUsersPlates(userId:number):Observable<IPlate[]>{
         return this._http.get(this._baseUrl + 'api/v1/plates/' + userId).map((response: Response) => <IPlate[]> response.json())
-                                                        .do(data => console.log('All: ' + JSON.stringify(data)))
+                                                        .do(data => console.log('User Plates: ' + JSON.stringify(data)))
                                                         .catch(this.handleError);
     };
     
@@ -57,7 +57,6 @@ export class PlateService {
     };
     
     createPlate(plate:IPlate):Observable<Response>{
-        console.log("made it");
         return this._http.post(this._baseUrl + 'plates',
         {
             plate: plate

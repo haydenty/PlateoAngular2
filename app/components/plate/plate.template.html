@@ -1,8 +1,6 @@
-
-
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" *ngIf='plate'>
             <h2>{{plate.state.name}} <i class="btn" aria-hidden="true"(click)="follow()" [ngClass]="{'btn-default': isFollowing, 'btn-primary' : !isFollowing}">Follow</i></h2>
             <h2>{{plate.plateNumber}}</h2>
             <br/>
