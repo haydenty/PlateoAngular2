@@ -16,10 +16,6 @@ export class MyPlatesComponent implements OnInit {
     constructor(private _plateService: PlateService){
     }
 
-    plateClicked():void{
-        //TODO: route
-    }
-
     ngOnInit():void{
         this._plateService.getUsersPlates(1).subscribe(plates => this.plates = plates, error => this.errorMessage = <any>error);
   }

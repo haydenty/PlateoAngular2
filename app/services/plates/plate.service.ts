@@ -9,16 +9,16 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class PlateService {
-    private _baseUrl:string = 'api/plates/plates.json';//'http://localhost:3000/';//'http://104.131.125.3:3000/';
+    private _baseUrl:string = 'http://localhost:3000/';//'http://104.131.125.3:3000/';
     constructor(private _http: Http){}
 
     getPlate(plateId:number):Observable<IPlate>{
-        return this._http.get(this._baseUrl ).map((response: Response) => <IPlate> response.json())//+ 'plates/' + plateId
+        return this._http.get(this._baseUrl + 'plates/' + plateId).map((response: Response) => <IPlate> response.json())
                                                         .do(data => console.log('All: ' + JSON.stringify(data)))
                                                         .catch(this.handleError);
     };   
     getAllPlates(): Observable<IPlate[]>{   
-        return this._http.get(this._baseUrl ).map((response: Response) => <IPlate[]> response.json())//+ 'plates'
+        return this._http.get(this._baseUrl+ 'plates' ).map((response: Response) => <IPlate[]> response.json())
                                                         .do(data => console.log('All: ' + JSON.stringify(data)))
                                                         .catch(this.handleError);
     };
@@ -30,6 +30,7 @@ export class PlateService {
    getPlateComments(plateId:number):Observable<Response>{
         return this._http.get(this._baseUrl + 'comments/' + plateId).do(data => console.log('All: ' + JSON.stringify(data))).catch(this.handleError);
     };
+    
     //These requests need tokens
     getUsersPlates(userId:number):Observable<IPlate[]>{
         return this._http.get(this._baseUrl + 'api/v1/plates/' + userId).map((response: Response) => <IPlate[]> response.json())
@@ -56,7 +57,8 @@ export class PlateService {
     };
     
     createPlate(plate:IPlate):Observable<Response>{
-        return this._http.post(this._baseUrl + 'api/v1/plates',
+        console.log("made it");
+        return this._http.post(this._baseUrl + 'plates',
         {
             plate: plate
         } ).catch(this.handleError);

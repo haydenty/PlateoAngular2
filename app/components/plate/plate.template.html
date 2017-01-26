@@ -1,2 +1,16 @@
-<h1>Plate X</h1>
-<commentFeed-shared [comments]='comments' (addCommentNotify)='addComment($event)'></commentFeed-shared>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{plate.state.name}} <i class="btn" aria-hidden="true"(click)="follow()" [ngClass]="{'btn-default': isFollowing, 'btn-primary' : !isFollowing}">Follow</i></h2>
+            <h2>{{plate.plateNumber}}</h2>
+            <br/>
+        </div>
+    </div>
+    <div class="row">
+        <div clas="col-sm-12">
+            <commentFeed-shared [comments]='comments' (addCommentNotify)='addComment($event)'></commentFeed-shared>
+        </div>
+    </div>
+</div>

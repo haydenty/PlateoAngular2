@@ -1,6 +1,6 @@
 import { IUser } from '../register/user';
 
-export class IComment {
+export interface IComment {
   id: number;
   user: IUser;
   comment: string;

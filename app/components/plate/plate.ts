@@ -4,7 +4,7 @@ export interface IPlate {
   _id:number;
   plateNumber:string;
   state:IState;
-  user:IUser;
+  createdBy:number;
   createdDateTime:string;
 }
 

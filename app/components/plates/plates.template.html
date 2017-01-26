@@ -15,10 +15,11 @@
       <div clas="col-sm-12">
         <div class="table-responsive">
           <table class="table">
+            <button class="btn btn-default0" types="button" (click)="createPlate()">+</button>
             <tbody>
               <tr>
               <tr *ngFor="let plate of plates | plateFilter:filterText"> 
-                <td (click)="plateClicked(plate);">
+                <td [routerLink]="['/plates', plate._id]">
                   {{plate.plateNumber}} - {{plate.state.name}}
                 </td>
               </tr>

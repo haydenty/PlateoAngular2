@@ -15,11 +15,20 @@ export class PlatesComponent implements OnInit {
 
     constructor(private _plateService: PlateService){
     }
+    createPlate():void{
+      var plate:IPlate = {
+        "_id": 2,
+        "plateNumber": "EYEMAC",
+        "state": {
+            "name": "WISCONSIN",
+            "abbreviation": "WI"
+        },
+        "createdBy": 1,
+        "createdDateTime": "2017-01-12T20:08:19.749Z"
+    };
 
-    plateClicked():void{
-        //TODO: route
+      this._plateService.createPlate(plate).subscribe(error => this.errorMessage = <any>error);
     }
-
     ngOnInit():void{
       this._plateService.getAllPlates().subscribe(plates => this.plates = plates, error => this.errorMessage = <any>error);
   }
