@@ -15,23 +15,31 @@ export class PlateComponent implements OnInit {
   isFollowing:boolean = false;
   comments:IComment[] = [];
   errorMessage:string;
+  resp:any;
 
   addComment(comment:IComment):void{
       console.log('In parent',comment);
-      //TODO: service call to create in db - should this live here or in shared component as comment service
+      this._plateService.addPlateComment(comment,this.plate._id).subscribe(resp => this.resp = resp, error => this.errorMessage = <any>error);
   };
 
   follow():void{
-    console.log("follow status changed")
-    //TODO: service call to say user is unfollowing or following plate x
-    this.isFollowing = !this.isFollowing;
+    var userId = 1;
+    if(!this.isFollowing){
+      this.route.params.switchMap((params: Params) => this._plateService.followPlate(+params['id'], userId)).subscribe(resp => this.resp = resp, error => this.errorMessage = <any>error); 
+    }
+     else{
+      this.route.params.switchMap((params: Params) => this._plateService.unfollowPlate(+params['id'], userId)).subscribe(resp => this.resp = resp, error => this.errorMessage = <any>error); 
+    }
+    
+    this.isFollowing = !this.isFollowing;//TODO: add errorhandling in case service is down don't switch following in UI
   }
 
   constructor(private _plateService: PlateService, private route: ActivatedRoute){}
 
   ngOnInit():void{
-    //TODO:service call with id from route (get plate, get comments, get following)
     this.route.params.switchMap((params: Params) => this._plateService.getPlate(+params['id'])).subscribe(plate => this.plate = plate, error => this.errorMessage = <any>error);
-    this.comments.push({id:1,comment:"test",user:{_id:1,firstName:"tom",lastName:"bob",pword:"",vpword:"",email:"",username:"tesetUN"},createdDateTime:"e234"});
+    this.route.params.switchMap((params: Params) => this._plateService.getPlateComments(+params['id'])).subscribe(comments => this.comments = comments, error => this.errorMessage = <any>error);
+    var userId = 1;
+    this.route.params.switchMap((params: Params) => this._plateService.getIsUserFollowingPlate(+params['id'], userId)).subscribe(resp => this.isFollowing = resp, error => this.errorMessage = <any>error);
   }
 }

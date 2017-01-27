@@ -12,13 +12,13 @@ export class CommentFeedComponent {
   @Output() addCommentNotify: EventEmitter<IComment> = new EventEmitter<IComment>();
   
   addComment():void{
-    var comment:IComment = {  id: -1,
-                    user: {
+    var comment:IComment = {  "_id": -1,
+                    user: { //TODO: add auth service to get user
                           "_id":1,
                           "firstName":"Bob",
                           "lastName":"Smith",
-                          "pword":"Test123",
-                          "vpword":"Test123",
+                          "pword":"",
+                          "vpword":"",
                           "email":"bob@test.com",
                           "username":"bsmith"
                       },

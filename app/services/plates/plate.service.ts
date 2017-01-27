@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { IPlate } from '../../components/plate/plate';
+import { IComment } from '../../sharedComponents/commentFeed/comment';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -27,8 +28,10 @@ export class PlateService {
                                                         .do(data => console.log('Searched Plates: ' + JSON.stringify(data)))
                                                         .catch(this.handleError);
     };
-   getPlateComments(plateId:number):Observable<Response>{
-        return this._http.get(this._baseUrl + 'comments/' + plateId).do(data => console.log('Comments: ' + JSON.stringify(data))).catch(this.handleError);
+   getPlateComments(plateId:number):Observable<IComment[]>{
+        return this._http.get(this._baseUrl + 'comments/' + plateId).map((response: Response) => <IComment[]> response.json())
+                                                                    .do(data => console.log('Comments: ' + JSON.stringify(data)))
+                                                                    .catch(this.handleError);
     };
     
     //These requests need tokens
@@ -39,20 +42,36 @@ export class PlateService {
     };
     
     followPlate(plateId:number,userId:number):Observable<Response>{
-        return this._http.post(this._baseUrl + 'api/v1/plates/follow/' + plateId + '/' + userId,{}).catch(this.handleError);
+        return this._http.post(this._baseUrl + 'plates/follow/' + plateId + '/' + userId + '/' + 1,{}).catch(this.handleError);
     };
-
-    getIsUserFollowingPlate(plateId:number,userId:number):Observable<Response>{
-        return this._http.get(this._baseUrl + 'api/v1/plates/follow/' + plateId + '/' + userId).do(data => console.log('All: ' + JSON.stringify(data))).catch(this.handleError);
+    unfollowPlate(plateId:number,userId:number):Observable<Response>{
+        return this._http.post(this._baseUrl + 'plates/follow/' + plateId + '/' + userId + '/' + 0,{}).catch(this.handleError);
     };
+    getIsUserFollowingPlate(plateId:number,userId:number):Observable<boolean>{
+        return this._http.get(this._baseUrl + 'plates/follow/' + plateId + '/' + userId)
+        .map(this.handleFollowing)
+        .do(data => console.log('All: ' + JSON.stringify(data)))
+        .catch(this.handleError);
+    };
+    private handleFollowing(resp: Response)
+    {
+        let result = resp.json();
+        console.log('following resp: ' , result);
+        if(result.length == 0){//not following
+            console.log('not following');
+            return false;
+        }
+        else{//following
+            console.log('following');
+            return true;
+        }
+    }
 
-    addPlateComment(plateId:number,userId:number,comment:string):Observable<Response>{
-        return this._http.post(this._baseUrl + 'api/v1/plates/comment',
+    addPlateComment(comment:IComment, plateId:number):Observable<Response>{
+        return this._http.post(this._baseUrl + 'comments',
         {
             plateId: plateId,
-            comment : comment,
-            createdBy : userId,
-            createdDateTime: new Date()
+            comment : comment
         }).catch(this.handleError);
     };
     
@@ -60,7 +79,7 @@ export class PlateService {
         return this._http.post(this._baseUrl + 'plates',
         {
             plate: plate
-        } ).catch(this.handleError);
+        }).catch(this.handleError);
     };
 
     private handleError(error: Response){
