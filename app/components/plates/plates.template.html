@@ -1,31 +1,39 @@
 <div class="container">
   <h1>{{title}}</h1>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="input-group my-group">
-                <input type="text" class="form-control" placeholder="Filter By..." [(ngModel)]="filterText">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Filter</button>
-                </span>
-            </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Filter By..." [(ngModel)]="filterText" />
+        <div class="input-group-btn form-group">
+
+          <select class="form-control" [(ngModel)]="selectedState">
+              <option *ngFor="let state of states" [ngValue]="state">{{state.abbreviation}}</option>
+          </select>
+          <button type="button" class="btn btn-default">
+                    Filter
+         </button>
+          <button type="button" class="btn btn-default" (click)="createPlate()">
+                    +
+           </button>
         </div>
+      </div>
     </div>
+  </div>
   <br/>
-    <div class="row">
-      <div clas="col-sm-12">
-        <div class="table-responsive">
-          <table class="table">
-            <button class="btn btn-default0" types="button" (click)="createPlate()">+</button>
-            <tbody>
-              <tr>
-              <tr *ngFor="let plate of plates | plateFilter:filterText"> 
+  <div class="row">
+    <div clas="col-sm-12">
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+            <tr>
+              <tr *ngFor="let plate of plates | plateFilter:filterText">
                 <td [routerLink]="['/plates', plate._id]">
                   {{plate.plateNumber}} - {{plate.state.name}}
                 </td>
               </tr>
-            </tbody>
-          </table>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
 </div>
