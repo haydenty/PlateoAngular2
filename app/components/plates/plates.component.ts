@@ -9,6 +9,7 @@ import { Data } from './states';
   templateUrl: 'plates.template.html'
 })
 export class PlatesComponent implements OnInit {
+    isMyPlates:boolean = false;
     data:Data = new Data();//TODO:is this correct usage?
     title:string = 'Plates';
     filterText:string = '';

@@ -12,9 +12,11 @@
           <button type="button" class="btn btn-default">
                     Filter
          </button>
+         <div *ngIf="!isMyPlates">
           <button type="button" class="btn btn-default" (click)="createPlate()">
                     +
            </button>
+           </div>
         </div>
       </div>
     </div>
