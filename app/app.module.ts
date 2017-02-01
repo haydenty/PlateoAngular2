@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 import { AppComponent }  from './app.component';
 
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     CommentFeedComponent
     ],
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ AppComponent ],
+  providers: [AUTH_PROVIDERS]
 })
 export class AppModule { }
