@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlateService } from '../../services/plates/plate.service';
 import { IPlate, IState } from '../plate/plate';
 import { Data } from './states';
+import { Auth } from '../../auth/auth.service';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +19,7 @@ export class PlatesComponent implements OnInit {
     plates:IPlate[];
     errorMessage:string;
 
-    constructor(private _plateService: PlateService){
+    constructor(private _plateService: PlateService, private auth: Auth){
     }
 
     createPlate():void{

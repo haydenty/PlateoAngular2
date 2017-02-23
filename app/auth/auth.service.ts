@@ -1,6 +1,7 @@
-import { Injectable }      from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
-import { myConfig }        from './auth.config';
+import { myConfig } from './auth.config';
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
@@ -9,11 +10,30 @@ declare var Auth0Lock: any;
 export class Auth {
   // Configure Auth0
   lock = new Auth0Lock(myConfig.clientID, myConfig.domain, {});
+  //Store profile object in auth class
+  userProfile: Object;
 
-  constructor() {
+
+  constructor(private router: Router) {
+    // Set userProfile attribute of already saved profile
+    this.userProfile = JSON.parse(localStorage.getItem('profile'));
+
     // Add callback for lock `authenticated` event
-    this.lock.on('authenticated', (authResult:any) => {
+    this.lock.on('authenticated', (authResult: any) => {
       localStorage.setItem('id_token', authResult.idToken);
+
+      // Fetch profile information
+      this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
+        if (error) {
+          // Handle error
+          alert(error);
+          return;
+        }
+
+        localStorage.setItem('profile', JSON.stringify(profile));
+        this.userProfile = profile;
+        this.router.navigate(['/plates']);
+      });
     });
   }
 
@@ -31,5 +51,8 @@ export class Auth {
   public logout() {
     // Remove token from localStorage
     localStorage.removeItem('id_token');
+    localStorage.removeItem('profile');
+    this.userProfile = undefined;
+    this.router.navigate(['/home']);
   };
 }

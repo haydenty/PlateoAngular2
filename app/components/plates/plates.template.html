@@ -12,7 +12,7 @@
           <button type="button" class="btn btn-default">
                     Filter
          </button>
-         <div *ngIf="!isMyPlates">
+         <div *ngIf="!isMyPlates && auth.authenticated()">
           <button type="button" class="btn btn-default" (click)="createPlate()">
                     +
            </button>
