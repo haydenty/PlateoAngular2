@@ -36,7 +36,7 @@ export class PlateService {
     
     //These requests need tokens
     getUsersPlates(userId:number):Observable<IPlate[]>{
-        return this._http.get(this._baseUrl + 'api/v1/plates/' + userId).map((response: Response) => <IPlate[]> response.json())
+        return this._http.get(this._baseUrl + 'plates/user/' + userId).map((response: Response) => <IPlate[]> response.json())
                                                         .do(data => console.log('User Plates: ' + JSON.stringify(data)))
                                                         .catch(this.handleError);
     };

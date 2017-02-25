@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IComment } from './comment';
+import { Auth } from '../../auth/auth.service';
 
 @Component({
   moduleId: module.id,
@@ -10,17 +11,23 @@ export class CommentFeedComponent {
   @Input() comments: IComment[];
   newComment:string;
   @Output() addCommentNotify: EventEmitter<IComment> = new EventEmitter<IComment>();
-  
+  authService:Auth;
+
+  constructor(private auth: Auth) {
+    this.authService = auth;
+  }
+
   addComment():void{
+    console.log("user profile", this.authService.userProfile);
     var comment:IComment = {  "_id": -1,
-                    user: { //TODO: add auth service to get user
-                          "_id":1,
-                          "firstName":"Bob",
-                          "lastName":"Smith",
+                    user: {
+                          "_id": this.authService.userProfile.identities[0].user_id,
+                          "firstName": this.authService.userProfile.user_metadata.firstName,
+                          "lastName":this.authService.userProfile.user_metadata.lastName,
                           "pword":"",
                           "vpword":"",
-                          "email":"bob@test.com",
-                          "username":"bsmith"
+                          "email": this.authService.userProfile.email,
+                          "username":this.authService.userProfile.user_metadata.username
                       },
                     comment: this.newComment,
                     createdDateTime: new Date().toString()

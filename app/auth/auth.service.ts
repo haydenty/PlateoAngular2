@@ -11,7 +11,7 @@ export class Auth {
   // Configure Auth0
   lock = new Auth0Lock(myConfig.clientID, myConfig.domain, {});
   //Store profile object in auth class
-  userProfile: Object;
+  userProfile: any;
 
 
   constructor(private router: Router) {

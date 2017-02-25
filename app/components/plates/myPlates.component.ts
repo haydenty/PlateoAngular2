@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlateService } from '../../services/plates/plate.service';
 import { IPlate, IState } from '../plate/plate';
 import { Data } from './states';
+import { Auth } from '../../auth/auth.service';
 
 @Component({
   moduleId: module.id,
@@ -9,6 +10,7 @@ import { Data } from './states';
   templateUrl: 'plates.template.html',
 })
 export class MyPlatesComponent implements OnInit {
+    authService:Auth;
     isMyPlates:boolean = true;
     data:Data = new Data();//TODO:is this correct usage?
     title:string = 'My Plates';
@@ -18,10 +20,12 @@ export class MyPlatesComponent implements OnInit {
     plates:IPlate[];
     errorMessage:string;
     
-    constructor(private _plateService: PlateService){
-    }
+    constructor(private _plateService: PlateService, private auth: Auth){
+      this.authService = auth;
+  }
 
     ngOnInit():void{
-        //this._plateService.getUsersPlates(1).subscribe(plates => this.plates = plates, error => this.errorMessage = <any>error);
+      var userId = this.authService.userProfile.identities[0].user_id;
+        this._plateService.getUsersPlates(userId).subscribe(plates => this.plates = plates, error => this.errorMessage = <any>error);
   }
 }
